@@ -1,4 +1,7 @@
 FROM java:8-jdk-alpine
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 
 ENV PROFILE=docker
 ENV APP_NAME=demo
