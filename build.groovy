@@ -2,7 +2,7 @@ node {
     def dockerImage
     def imageName = 'demo'
     def registryUrl = '47.106.222.76:5000'
-    def httpRegistryUrl = 'http://'+registryUrl
+    def httpRegistryUrl = 'https://'+registryUrl
     def maven = docker.image('maven:3-alpine')
 
     stage('checkout') {
