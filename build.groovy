@@ -33,6 +33,6 @@ node {
     }
     stage('AppDeploy') {
 
-        sh  'docker service update --update-order start-first --image '+registryUrl+'/'+imageName+":t_$BUILD_NUMBER  _"+serviceName
+        sh  'docker service update --update-order start-first --image '+registryUrl+'/'+imageName+":t_$BUILD_NUMBER  stack_"+serviceName
     }
-}stack
+}
