@@ -12,4 +12,9 @@ public class DemoController {
     public String go() {
         return "success";
     }
+
+    @GetMapping("/")
+    public String home() {
+        return "welcome to hello world";
+    }
 }
