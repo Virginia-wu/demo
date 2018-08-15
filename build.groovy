@@ -1,6 +1,7 @@
 node {
     def dockerImage
     def imageName = 'demo'
+    def serviceName = 'demo'
     def registryUrl = 'registry.virginia.com:5000'
     def httpRegistryUrl = 'http://'+registryUrl
     def maven = docker.image('maven:3-alpine')
@@ -30,4 +31,8 @@ node {
             dockerImage.push("latest")
         }
     }
-}
+    stage('AppDeploy') {
+
+        sh  'docker service update --update-order start-first --image '+registryUrl+'/'+imageName+":t_$BUILD_NUMBER  _"+serviceName
+    }
+}stack

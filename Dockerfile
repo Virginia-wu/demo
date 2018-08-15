@@ -1,5 +1,5 @@
 FROM java:8-jdk-alpine
-ENV  TIME_ZONE Asia/Shanghai
+ENV TIME_ZONE Asia/Shanghai
 
 ENV PROFILE=docker
 ENV APP_NAME=demo
