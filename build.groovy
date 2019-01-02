@@ -11,6 +11,10 @@ node {
         checkout scm
     }
 
+    stage('JaCoCo Report') {
+        sh 'jacoco exclusionPattern: \'**/*Test*.class\', execPattern: \'**/target/jacoco.exec\', inclusionPattern: \'**/*.class\''
+    }
+
     stage('MvnBuild') {
 
         maven.inside('-v /root/.m2/:/root/.m2/'){
@@ -36,7 +40,5 @@ node {
         sh  'docker service update --update-order start-first --image '+registryUrl+'/'+imageName+":t_$BUILD_NUMBER  stack_"+serviceName
     }
 
-    stage('JaCoCo Report') {
-        sh 'jacoco exclusionPattern: \'**/*Test*.class\', execPattern: \'**/target/jacoco.exec\', inclusionPattern: \'**/*.class\''
-    }
+
 }
