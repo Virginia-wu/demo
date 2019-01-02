@@ -6,13 +6,21 @@ node {
     def httpRegistryUrl = 'http://'+registryUrl
     def maven = docker.image('maven:3-alpine')
 
+    def testResult
+
     stage('checkout') {
 
         checkout scm
     }
 
     stage('JaCoCo Report') {
-        jacoco(execPattern: '**/target/jacoco.exec')
+        def result = jacoco(execPattern: '**/target/jacoco.exec')
+        testResult = result
+    }
+
+    stage('email') {
+        emailext body: testResult, subject: "jacoco报告", to: 'wujiayunny@163.com'
+
     }
 
 //    stage('MvnBuild') {
