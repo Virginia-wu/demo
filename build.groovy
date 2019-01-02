@@ -12,11 +12,7 @@ node {
     }
 
     stage('JaCoCo Report') {
-        steps {
-        sh './jenkins_build.sh'
-        step([ $class: 'JacocoPublisher',
-               execPattern: '**/target/jacoco.exec'])
-    }
+        jacoco(execPattern: '**/target/jacoco.exec')
     }
 
     stage('MvnBuild') {
