@@ -12,7 +12,11 @@ node {
     }
 
     stage('JaCoCo Report') {
-        sh 'jacoco exclusionPattern: \'**/*Test*.class\', execPattern: \'**/target/jacoco.exec\', inclusionPattern: \'**/*.class\''
+        steps {
+        sh './jenkins_build.sh'
+        step([ $class: 'JacocoPublisher',
+               execPattern: '**/target/jacoco.exec'])
+    }
     }
 
     stage('MvnBuild') {
